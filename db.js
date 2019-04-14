@@ -16,4 +16,18 @@ module.exports = {
     return audioList.data;
   },
 
+  // Return a single song's data by ID
+  async getSongById(id) {
+    const audioList = await this.getAllSongs();
+    const songData = audioList.find(song => song.id === id);
+
+    // Handle if the ID doesn't exist
+    if (!songData) {
+      return null;
+    }
+
+    // Return path to found song
+    return songData;
+  },
+
 };
