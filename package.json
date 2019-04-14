@@ -1,0 +1,11 @@
+{
+  "name": "song-api",
+  "version": "1.0.0",
+  "description": "Audio library/player backend.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Ben Duncan <ben@cascadiaconcepts.com> (http://benduncan.me)",
+  "license": "MIT"
+}

@@ -1,0 +1,31 @@
+{
+  "data": [{
+    "id": "a",
+    "title": "First Song",
+    "file": "1.mp3"
+  }, {
+    "id": "b",
+    "title": "Second Song",
+    "file": "2.mp3"
+  }, {
+    "id": "c",
+    "title": "Third Song",
+    "file": "3.mp3"
+  }, {
+    "id": "d",
+    "title": "Fourth Song",
+    "file": "4.mp3"
+  }, {
+    "id": "e",
+    "title": "Fifth Song",
+    "file": "5.mp3"
+  }, {
+    "id": "f",
+    "title": "Sixth Song",
+    "file": "6.mp3"
+  }, {
+    "id": "g",
+    "title": "Seventh Song",
+    "file": "7.mp3"
+  }]
+}
