@@ -5,19 +5,25 @@ const db = require('../db');
 const router = Router();
 const SONG_FILES_DIR = path.resolve(__dirname, '../data/audio-files');
 
-router.get('/', async (req, res) => {
-  let paginatedSongsData;
+// Return a sanitized song object with a relative link to the file endpoint
+const sanitizeSong = baseUrl => ({ id, title }) => ({
+  id,
+  title,
+  link: `${baseUrl}/${id}/file.mp3`,
+});
 
+// Endpoint to list all songs, paginated with ?page
+router.get('/', async (req, res) => {
   try {
-    const page = req.query.page || 1;
-    paginatedSongsData = await db.getAllSongsByPage(page);
+    const { data, pagination } = await db.getAllSongsByPage(req.query.page);
+    const sanitizedData = data.map(sanitizeSong(req.baseUrl));
+    return res.json({ data: sanitizedData, pagination });
   } catch (error) {
     return res.status(500).send('Error loading song list from database.');
   }
-
-  return res.json(paginatedSongsData);
 });
 
+// Endpoint to serve a single song by ID as a static file
 router.get('/:id/file.mp3', async (req, res) => {
   // Get data for the specific song
   const songId = req.params.id;
