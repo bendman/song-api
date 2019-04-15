@@ -6,16 +6,16 @@ const router = Router();
 const SONG_FILES_DIR = path.resolve(__dirname, '../data/audio-files');
 
 router.get('/', async (req, res) => {
-  let data = [];
+  let paginatedSongsData;
 
   try {
-    const allSongs = await db.getAllSongs();
-    data = allSongs;
+    const page = req.query.page || 1;
+    paginatedSongsData = await db.getAllSongsByPage(page);
   } catch (error) {
     return res.status(500).send('Error loading song list from database.');
   }
 
-  return res.json({ data });
+  return res.json(paginatedSongsData);
 });
 
 router.get('/:id/file.mp3', async (req, res) => {
